@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Detalhes, histórico de versões e fluxo de aprovação da avaliação escolar">
+  <title>Detalhes da Prova - Setor de Provas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">📚</div>
+        <div class="brand-info">
+          <h1>Setor de Provas</h1>
+          <span>Gestão Escolar</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Menu Principal</span>
+        <a href="dashboard.html" class="nav-item" id="nav-dashboard">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard
+        </a>
+        <a href="provas.html" class="nav-item active" id="nav-provas">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Todas as Provas
+        </a>
+        <a href="nova-prova.html" class="nav-item" id="nav-nova-prova">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Cadastrar Prova
+        </a>
+
+        <span class="nav-section-title">Análise & Auditoria</span>
+        <a href="relatorios.html" class="nav-item" id="nav-relatorios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Relatórios
+        </a>
+        <a href="atividades.html" class="nav-item" id="nav-atividades">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Histórico de Ações
+        </a>
+
+        <span class="nav-section-title">Administração</span>
+        <a href="usuarios.html" class="nav-item" id="nav-usuarios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Usuários & Permissões
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="btn-logout" class="btn-logout" style="width: 100%; justify-content: center;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          Sair do Sistema
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="mobile-toggle-btn" class="mobile-toggle-btn" aria-label="Abrir Menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="page-title-box">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <a href="provas.html" style="color: var(--text-muted); font-size: 0.85rem;">&larr; Voltar para Provas</a>
+            </div>
+            <h2>Detalhes da Avaliação <span id="header-codigo-prova" style="color: var(--primary); font-family: monospace;"></span></h2>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-badge">
+            <div id="header-user-avatar" class="user-avatar">U</div>
+            <div class="user-info">
+              <span id="header-user-name" class="user-name">Usuário</span>
+              <span id="header-user-role" class="user-role">Perfil</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-content">
+        <!-- Hero de Status e Ações do Fluxo -->
+        <div class="workflow-status-hero">
+          <div class="status-hero-info">
+            <h3>Situação Atual no Setor de Provas</h3>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span id="badge-status-atual" class="badge" style="font-size: 0.95rem; padding: 0.45rem 1rem;">
+                Carregando...
+              </span>
+              <span id="status-descricao-detalhada" style="font-size: 0.85rem; color: var(--text-muted);"></span>
+            </div>
+          </div>
+
+          <!-- Botões de Ações Dinâmicos de Acordo com Perfil e Status -->
+          <div class="status-hero-actions" id="container-acoes-fluxo">
+            <!-- Injetados dinamicamente via detalhes-prova.js -->
+          </div>
+        </div>
+
+        <!-- Seção Obrigatória de Liberação / Bloqueio de Impressão (Requisito 8) -->
+        <div id="box-impressao" style="margin-bottom: 2rem;">
+          <!-- Injetado dinamicamente: print-lock-box ou print-unlocked-box -->
+        </div>
+
+        <!-- Grid de Dados Cadastrais e Versão Atual -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- Informações Cadastrais -->
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="card-header">
+              <h3 class="card-title">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Identificação da Prova
+              </h3>
+              <span id="badge-trimestre-divisao" style="display: flex; gap: 0.4rem;"></span>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;">
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Título da Prova</label>
+                  <div id="detalhe-titulo" style="font-size: 1.05rem; font-weight: 700;">-</div>
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Disciplina</label>
+                  <div id="detalhe-disciplina" style="font-size: 1rem; font-weight: 600;">-</div>
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Professor Responsável</label>
+                  <div id="detalhe-professor" style="font-weight: 600;">-</div>
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Turma</label>
+                  <div id="detalhe-turma" style="font-weight: 600;">-</div>
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Data Prevista de Aplicação</label>
+                  <div id="detalhe-data-aplicacao" style="font-weight: 600;">-</div>
+                </div>
+                <div>
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Prazo Limite de Entrega</label>
+                  <div id="detalhe-prazo-entrega" style="font-weight: 600;">-</div>
+                </div>
+                <div style="grid-column: span 2;">
+                  <label class="form-label" style="font-size: 0.78rem; color: var(--text-muted);">Observações / Orientações</label>
+                  <div id="detalhe-observacoes" style="background: #f8fafc; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); font-size: 0.9rem;">
+                    Nenhuma observação informada.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card da Versão Atual Ativa -->
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="card-header">
+              <h3 class="card-title">Versão Ativa Atual</h3>
+              <span id="badge-versao-numero" class="badge" style="background: var(--primary); color: white; font-size: 0.85rem;">V1</span>
+            </div>
+            <div class="card-body" id="card-versao-atual-conteudo">
+              <div class="loading-container">
+                <span class="spinner"></span>
+                <span>Carregando versão...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Histórico Completo de Versões (Requisito 7) -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Histórico e Rastreabilidade de Versões (V1, V2...)
+            </h3>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">Todas as versões são preservadas permanentemente</span>
+          </div>
+
+          <div class="card-body" id="container-lista-versoes">
+            <div class="loading-container">
+              <span class="spinner"></span>
+              <span>Carregando histórico de versões...</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL: Enviar Nova Versão (Setor de Provas) -->
+  <div id="modal-nova-versao" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enviar Nova Versão Corrigida</h3>
+        <button type="button" class="modal-close-btn" onclick="fecharModal('modal-nova-versao')">&times;</button>
+      </div>
+      <form id="form-upload-versao">
+        <div class="modal-body">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            O envio de uma nova versão manterá o histórico e revogará quaisquer aprovações de impressão anteriores.
+          </p>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label">Arquivo Corrigido <span class="required">*</span></label>
+            <input type="file" id="input-arquivo-versao" class="form-control" accept=".pdf,.doc,.docx,.odt,.zip" required>
+            <span class="form-hint">Formatos: PDF, Word ou ZIP</span>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label">Descrição das Alterações Realizadas <span class="required">*</span></label>
+            <textarea id="input-descricao-alteracoes" class="form-control" rows="3" placeholder="Ex: Correção de margens, ajuste de ortografia na questão 3, adição de cabeçalho..." required></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label">Observações Internas do Setor</label>
+            <input type="text" id="input-obs-setor" class="form-control" placeholder="Anotações para a equipe">
+          </div>
+
+          <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+              <input type="checkbox" id="check-alteracao-conteudo" style="margin-top: 0.2rem;">
+              <div>
+                <strong style="font-size: 0.9rem; color: var(--text-main);">Houve alteração no conteúdo pedagógico das questões?</strong>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">
+                  Se marcado, a versão será obrigatoriamente encaminhada para validação do professor. Caso contrário, seguirá o fluxo simplificado para aprovação final.
+                </p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="fecharModal('modal-nova-versao')">Cancelar</button>
+          <button type="submit" id="btn-submit-versao" class="btn btn-primary">
+            <span>Enviar Versão</span>
+            <span class="spinner" style="display: none; width: 16px; height: 16px; border-width: 2px; border-top-color: white;"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Validação do Professor -->
+  <div id="modal-validacao-professor" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Validação do Professor Responsável</h3>
+        <button type="button" class="modal-close-btn" onclick="fecharModal('modal-validacao-professor')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Analise a versão revisada enviada pelo Setor de Provas. Você pode aprovar o conteúdo para encaminhamento à aprovação final ou solicitar novos ajustes.
+        </p>
+
+        <div class="form-group" style="margin-bottom: 1.25rem;">
+          <label class="form-label">Parecer / Apontamentos do Professor</label>
+          <textarea id="textarea-parecer-professor" class="form-control" rows="3" placeholder="Insira seu parecer ou detalhe os ajustes necessários..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="executarAcaoProfessor('solicitar-ajustes')">
+          Solicitar Novos Ajustes
+        </button>
+        <button type="button" class="btn btn-success" onclick="executarAcaoProfessor('validar')">
+          Aprovar Conteúdo &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Solicitação de Correção pelo Setor -->
+  <div id="modal-solicitar-correcao" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Solicitar Correções na Prova</h3>
+        <button type="button" class="modal-close-btn" onclick="fecharModal('modal-solicitar-correcao')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Motivo / Pendências Identificadas <span class="required">*</span></label>
+          <textarea id="textarea-motivo-correcao" class="form-control" rows="4" placeholder="Descreva os problemas encontrados que impedem o prosseguimento..." required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="fecharModal('modal-solicitar-correcao')">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="confirmarSolicitacaoCorrecao()">Marcar Aguardando Correção</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Aprovação Final para Impressão -->
+  <div id="modal-aprovacao-final" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Aprovação Final para Impressão</h3>
+        <button type="button" class="modal-close-btn" onclick="fecharModal('modal-aprovacao-final')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+          <h4 style="color: var(--primary); font-size: 0.92rem; margin-bottom: 0.25rem;">Autorização Oficial de Impressão</h4>
+          <p style="font-size: 0.82rem; color: #1e40af;">
+            Esta ação autoriza formalmente a impressão da versão atual da prova. O arquivo será liberado exclusivamente com o seu registro de responsabilidade.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Justificativa / Parecer de Aprovação</label>
+          <textarea id="textarea-justificativa-final" class="form-control" rows="3" placeholder="Ex: Prova conferida e validada em conformidade com o cronograma pedagógico."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="fecharModal('modal-aprovacao-final')">Cancelar</button>
+        <button type="button" class="btn btn-success" onclick="confirmarAprovacaoFinal()">
+          Confirmar e Liberar para Impressão
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/detalhes-prova.js"></script>
+</body>
+</html>

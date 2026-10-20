@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gerenciamento do Setor de Provas</title>
+  <script>
+    // Redirecionamento inteligente baseado no estado de login
+    const token = localStorage.getItem('provas_token');
+    const user = localStorage.getItem('provas_user');
+    if (token && user) {
+      window.location.replace('dashboard.html');
+    } else {
+      window.location.replace('login.html');
+    }
+  </script>
+</head>
+<body style="font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; background: #0f172a; color: white;">
+  <p>Carregando o sistema escolar...</p>
+</body>
+</html>

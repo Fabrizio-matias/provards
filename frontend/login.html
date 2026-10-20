@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acesso ao Sistema de Gerenciamento do Setor de Provas do Colégio">
+  <title>Login - Sistema de Gestão do Setor de Provas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-brand-icon">📚</div>
+      <h2>Setor de Provas</h2>
+      <p>Acesse o portal de gestão e aprovação de avaliações</p>
+    </div>
+
+    <form id="form-login">
+      <div id="login-error" style="display: none; background: #fee2e2; color: #b91c1c; padding: 0.75rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; font-size: 0.88rem; border: 1px solid #fecaca;"></div>
+
+      <div class="form-group" style="margin-bottom: 1.25rem;">
+        <label for="input-email" class="form-label">E-mail Institucional</label>
+        <input type="email" id="input-email" class="form-control" placeholder="ex: professor@colegio.edu.br" required autocomplete="email">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 1.5rem;">
+        <label for="input-senha" class="form-label">Senha de Acesso</label>
+        <input type="password" id="input-senha" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <button type="submit" id="btn-login-submit" class="btn btn-primary" style="width: 100%; padding: 0.8rem;">
+        <span id="btn-login-text">Entrar no Sistema</span>
+        <span id="btn-login-spinner" class="spinner" style="display: none; width: 18px; height: 18px; border-width: 2px; border-top-color: white;"></span>
+      </button>
+    </form>
+
+    <!-- Test Credentials Quick Fill -->
+    <div class="test-credentials-box">
+      <h4>⚡ Acesso Rápido de Testes (Perfis)</h4>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem;">Clique para preencher as credenciais de demonstração:</p>
+      <div class="test-roles-buttons">
+        <button type="button" class="btn-chip" onclick="preencherLogin('admin@colegio.edu.br', 'admin123')">👑 Admin</button>
+        <button type="button" class="btn-chip" onclick="preencherLogin('setor@colegio.edu.br', 'setor123')">📋 Setor de Provas</button>
+        <button type="button" class="btn-chip" onclick="preencherLogin('aprovador@colegio.edu.br', 'aprovador123')">✅ Resp. Aprovação</button>
+        <button type="button" class="btn-chip" onclick="preencherLogin('coordenacao@colegio.edu.br', 'coordenacao123')">🎓 Coordenação</button>
+        <button type="button" class="btn-chip" onclick="preencherLogin('carlos.silva@colegio.edu.br', 'prof123')">👨‍🏫 Prof. Carlos (Mat)</button>
+        <button type="button" class="btn-chip" onclick="preencherLogin('ana.souza@colegio.edu.br', 'prof123')">👩‍🏫 Profa. Ana (Hist)</button>
+      </div>
+    </div>
+
+    <!-- API Config Modal Trigger -->
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <a href="#" id="link-config-api" style="font-size: 0.78rem; color: var(--text-muted); text-decoration: underline;">
+        Configurar URL da API (Local / Vercel)
+      </a>
+    </div>
+  </div>
+
+  <!-- Modal para Configuração da API -->
+  <div id="modal-api-config" class="modal-backdrop">
+    <div class="modal-content" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Configurar URL da API</h3>
+        <button type="button" class="modal-close-btn" onclick="fecharModalApi()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Defina o endpoint base da API caso deseje conectar a um backend em produção na Vercel ou em outra porta local:
+        </p>
+        <div class="form-group">
+          <label for="input-api-url" class="form-label">URL Base da API</label>
+          <input type="text" id="input-api-url" class="form-control" placeholder="http://localhost:5000/api">
+          <span class="form-hint">Ex: https://meu-backend.vercel.app/api</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="fecharModalApi()">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="salvarConfigApi()">Salvar e Recarregar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    // Se já estiver logado, redireciona para dashboard
+    if (localStorage.getItem('provas_token') && localStorage.getItem('provas_user')) {
+      window.location.replace('dashboard.html');
+    }
+
+    function preencherLogin(email, senha) {
+      document.getElementById('input-email').value = email;
+      document.getElementById('input-senha').value = senha;
+      document.getElementById('input-email').focus();
+    }
+
+    const formLogin = document.getElementById('form-login');
+    const loginError = document.getElementById('login-error');
+    const btnSubmit = document.getElementById('btn-login-submit');
+    const btnText = document.getElementById('btn-login-text');
+    const btnSpinner = document.getElementById('btn-login-spinner');
+
+    formLogin.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.style.display = 'none';
+
+      const email = document.getElementById('input-email').value.trim();
+      const senha = document.getElementById('input-senha').value;
+
+      btnSubmit.disabled = true;
+      btnText.style.display = 'none';
+      btnSpinner.style.display = 'inline-block';
+
+      try {
+        const response = await apiRequest('/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ email, senha }),
+        });
+
+        localStorage.setItem('provas_token', response.token);
+        localStorage.setItem('provas_user', JSON.stringify(response.usuario));
+
+        showToast('Login realizado com sucesso! Redirecionando...', 'success');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 600);
+      } catch (err) {
+        loginError.textContent = err.message || 'Erro ao realizar login.';
+        loginError.style.display = 'block';
+        btnSubmit.disabled = false;
+        btnText.style.display = 'inline-block';
+        btnSpinner.style.display = 'none';
+      }
+    });
+
+    // Modal API Config
+    const modalApi = document.getElementById('modal-api-config');
+    document.getElementById('link-config-api').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('input-api-url').value = getApiBaseUrl();
+      modalApi.classList.add('show');
+    });
+
+    function fecharModalApi() {
+      modalApi.classList.remove('show');
+    }
+
+    function salvarConfigApi() {
+      const novaUrl = document.getElementById('input-api-url').value.trim();
+      if (novaUrl) {
+        localStorage.setItem('PROVAS_API_URL', novaUrl);
+      } else {
+        localStorage.removeItem('PROVAS_API_URL');
+      }
+      location.reload();
+    }
+  </script>
+</body>
+</html>

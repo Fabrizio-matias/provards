@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastro e envio inicial de nova avaliação escolar">
+  <title>Cadastrar Nova Prova - Setor de Provas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">📚</div>
+        <div class="brand-info">
+          <h1>Setor de Provas</h1>
+          <span>Gestão Escolar</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Menu Principal</span>
+        <a href="dashboard.html" class="nav-item" id="nav-dashboard">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard
+        </a>
+        <a href="provas.html" class="nav-item" id="nav-provas">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Todas as Provas
+        </a>
+        <a href="nova-prova.html" class="nav-item active" id="nav-nova-prova">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Cadastrar Prova
+        </a>
+
+        <span class="nav-section-title">Análise & Auditoria</span>
+        <a href="relatorios.html" class="nav-item" id="nav-relatorios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Relatórios
+        </a>
+        <a href="atividades.html" class="nav-item" id="nav-atividades">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Histórico de Ações
+        </a>
+
+        <span class="nav-section-title">Administração</span>
+        <a href="usuarios.html" class="nav-item" id="nav-usuarios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Usuários & Permissões
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="btn-logout" class="btn-logout" style="width: 100%; justify-content: center;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          Sair do Sistema
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <header class="app-header">
+        <div class="header-left">
+          <button id="mobile-toggle-btn" class="mobile-toggle-btn" aria-label="Abrir Menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="page-title-box">
+            <h2>Cadastrar Nova Prova</h2>
+            <p>Preencha os dados da avaliação e anexe o arquivo (Versão 1)</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-badge">
+            <div id="header-user-avatar" class="user-avatar">U</div>
+            <div class="user-info">
+              <span id="header-user-name" class="user-name">Usuário</span>
+              <span id="header-user-role" class="user-role">Perfil</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-content" style="max-width: 900px;">
+        <div class="content-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Dados da Avaliação
+            </h3>
+            <span style="font-size: 0.8rem; color: var(--text-muted);"><span class="required" style="color: var(--danger);">*</span> Campos de preenchimento obrigatório</span>
+          </div>
+
+          <div class="card-body">
+            <form id="form-nova-prova">
+              <div class="form-grid">
+                <!-- Título -->
+                <div class="form-group col-span-2">
+                  <label for="input-titulo" class="form-label">
+                    Título / Nome da Avaliação <span class="required">*</span>
+                  </label>
+                  <input type="text" id="input-titulo" class="form-control" placeholder="Ex: Avaliação Geral de Trigonometria e Funções" required>
+                  <span class="form-hint">Nome completo descritivo da prova</span>
+                </div>
+
+                <!-- Disciplina -->
+                <div class="form-group">
+                  <label for="input-disciplina" class="form-label">
+                    Disciplina <span class="required">*</span>
+                  </label>
+                  <input type="text" id="input-disciplina" class="form-control" placeholder="Ex: Matemática, História, Física..." required>
+                </div>
+
+                <!-- Turma -->
+                <div class="form-group">
+                  <label for="input-turma" class="form-label">
+                    Turma <span class="required">*</span>
+                  </label>
+                  <input type="text" id="input-turma" class="form-control" placeholder="Ex: 9º Ano A, 3ª Série EM..." required>
+                </div>
+
+                <!-- Trimestre -->
+                <div class="form-group">
+                  <label for="select-trimestre" class="form-label">
+                    Trimestre Letivo <span class="required">*</span>
+                  </label>
+                  <select id="select-trimestre" class="form-select" required>
+                    <option value="">Selecione o trimestre...</option>
+                    <option value="1º">1º Trimestre</option>
+                    <option value="2º">2º Trimestre</option>
+                    <option value="3º">3º Trimestre</option>
+                  </select>
+                </div>
+
+                <!-- Divisão AG / AD (Regra Obrigatória do Requisito 5) -->
+                <div class="form-group">
+                  <label for="select-divisao" class="form-label">
+                    Divisão da Avaliação (AG / AD) <span class="required">*</span>
+                  </label>
+                  <select id="select-divisao" class="form-select" required>
+                    <option value="">Selecione a divisão...</option>
+                    <option value="AG">AG — Avaliação Geral</option>
+                    <option value="AD">AD — Avaliação Diversificada</option>
+                  </select>
+                  <span class="form-hint">Permite organizar e filtrar independentemente da turma</span>
+                </div>
+
+                <!-- Data de Aplicação -->
+                <div class="form-group">
+                  <label for="input-data-aplicacao" class="form-label">
+                    Data Prevista de Aplicação <span class="required">*</span>
+                  </label>
+                  <input type="date" id="input-data-aplicacao" class="form-control" required>
+                </div>
+
+                <!-- Prazo de Entrega -->
+                <div class="form-group">
+                  <label for="input-prazo-entrega" class="form-label">
+                    Prazo Final de Entrega ao Setor <span class="required">*</span>
+                  </label>
+                  <input type="date" id="input-prazo-entrega" class="form-control" required>
+                  <span class="form-hint">Data limite para o envio das correções</span>
+                </div>
+
+                <!-- Seletor de Professor (visível para Admin) -->
+                <div id="grupo-admin-professor" class="form-group col-span-2" style="display: none;">
+                  <label for="select-professor" class="form-label">
+                    Professor Responsável <span class="required">*</span>
+                  </label>
+                  <select id="select-professor" class="form-select">
+                    <option value="">Selecione o professor responsável...</option>
+                  </select>
+                </div>
+
+                <!-- Observações -->
+                <div class="form-group col-span-2">
+                  <label for="textarea-observacoes" class="form-label">
+                    Observações e Instruções para o Setor
+                  </label>
+                  <textarea id="textarea-observacoes" class="form-control" rows="3" placeholder="Informações de formatação, folha de respostas, número de páginas, critérios específicos..."></textarea>
+                </div>
+
+                <!-- Upload de Arquivo (Versão 1) -->
+                <div class="form-group col-span-2">
+                  <label class="form-label">
+                    Arquivo da Prova (Versão 1) <span class="required">*</span>
+                  </label>
+                  <div class="file-dropzone" id="dropzone-arquivo">
+                    <input type="file" id="input-arquivo" accept=".pdf,.doc,.docx,.odt,.zip" required>
+                    <div class="dropzone-icon">📁</div>
+                    <div class="dropzone-text">Arraste e solte o arquivo aqui ou clique para selecionar</div>
+                    <div class="dropzone-subtext">Formatos aceitos: PDF, DOCX, DOC, ODT ou ZIP (máx. 25MB)</div>
+                    <div id="file-name-display" class="selected-file-name" style="display: none;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+                <a href="provas.html" class="btn btn-outline">Cancelar</a>
+                <button type="submit" id="btn-submit-prova" class="btn btn-primary btn-lg">
+                  <span id="btn-submit-text">Cadastrar e Enviar Prova</span>
+                  <span id="btn-submit-spinner" class="spinner" style="display: none; width: 18px; height: 18px; border-width: 2px; border-top-color: white;"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nova-prova.js"></script>
+</body>
+</html>

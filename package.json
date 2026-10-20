@@ -1,0 +1,20 @@
+{
+  "name": "sistema-gerenciamento-setor-provas",
+  "version": "1.0.0",
+  "description": "Sistema de Gerenciamento do Setor de Provas Escolar - Node.js, Express, MongoDB Atlas e JavaScript Vanilla",
+  "scripts": {
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev",
+    "seed": "npm --prefix backend run seed",
+    "install:backend": "npm --prefix backend install"
+  },
+  "keywords": [
+    "gestao-provas",
+    "escola",
+    "colegio",
+    "avaliacao-escolar",
+    "workflow-provas"
+  ],
+  "author": "",
+  "license": "ISC"
+}

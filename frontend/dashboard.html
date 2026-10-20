@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard do Sistema de Gerenciamento do Setor de Provas">
+  <title>Dashboard - Setor de Provas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">📚</div>
+        <div class="brand-info">
+          <h1>Setor de Provas</h1>
+          <span>Gestão Escolar</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <span class="nav-section-title">Menu Principal</span>
+        <a href="dashboard.html" class="nav-item active" id="nav-dashboard">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard
+        </a>
+        <a href="provas.html" class="nav-item" id="nav-provas">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Todas as Provas
+        </a>
+        <a href="nova-prova.html" class="nav-item" id="nav-nova-prova">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Cadastrar Prova
+        </a>
+
+        <span class="nav-section-title">Análise & Auditoria</span>
+        <a href="relatorios.html" class="nav-item" id="nav-relatorios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          Relatórios
+        </a>
+        <a href="atividades.html" class="nav-item" id="nav-atividades">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Histórico de Ações
+        </a>
+
+        <span class="nav-section-title">Administração</span>
+        <a href="usuarios.html" class="nav-item" id="nav-usuarios">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          Usuários & Permissões
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="login.html" id="btn-logout" class="btn-logout" style="width: 100%; justify-content: center;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          Sair do Sistema
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Top Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="mobile-toggle-btn" class="mobile-toggle-btn" aria-label="Abrir Menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="page-title-box">
+            <h2>Painel de Controle</h2>
+            <p>Visão geral em tempo real do fluxo de conferência e impressão</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="nova-prova.html" id="btn-header-nova-prova" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Nova Prova
+          </a>
+          <div class="user-profile-badge">
+            <div id="header-user-avatar" class="user-avatar">U</div>
+            <div class="user-info">
+              <span id="header-user-name" class="user-name">Usuário</span>
+              <span id="header-user-role" class="user-role">Perfil</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- App Content -->
+      <main class="app-content">
+        <!-- Indicadores / Cards de Métricas (Requisito 9) -->
+        <div class="metrics-grid">
+          <div class="metric-card primary">
+            <div class="metric-data">
+              <h3>Total Cadastradas</h3>
+              <div id="metric-total" class="metric-number">0</div>
+              <div class="metric-subtext">Avaliações no sistema</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card warning">
+            <div class="metric-data">
+              <h3>Aguardando Conferência</h3>
+              <div id="metric-aguardando-conferencia" class="metric-number">0</div>
+              <div class="metric-subtext">Fila de entrada do setor</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card purple">
+            <div class="metric-data">
+              <h3>Em Análise / Correção</h3>
+              <div id="metric-em-conferencia" class="metric-number">0</div>
+              <div class="metric-subtext">Sendo revisadas pelo setor</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card info">
+            <div class="metric-data">
+              <h3>Validação do Professor</h3>
+              <div id="metric-validacao-professor" class="metric-number">0</div>
+              <div class="metric-subtext">Aguardando aceite docente</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card primary">
+            <div class="metric-data">
+              <h3>Aguardando Aprovação</h3>
+              <div id="metric-aprovacao-final" class="metric-number">0</div>
+              <div class="metric-subtext">Prontas p/ liberação final</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card success">
+            <div class="metric-data">
+              <h3>Liberadas p/ Impressão</h3>
+              <div id="metric-aprovadas-impressao" class="metric-number">0</div>
+              <div class="metric-subtext">Autorizadas oficialmente</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            </div>
+          </div>
+
+          <div class="metric-card danger">
+            <div class="metric-data">
+              <h3>Provas Atrasadas</h3>
+              <div id="metric-atrasadas" class="metric-number">0</div>
+              <div class="metric-subtext">Prazo de entrega vencido</div>
+            </div>
+            <div class="metric-icon-box">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Widgets de Distribuição AG/AD e Trimestre (Requisito 5 e 9) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- Divisão AG / AD -->
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="card-header">
+              <h3 class="card-title">Divisão da Avaliação (AG vs AD)</h3>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">Organização pedagógica</span>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; gap: 1rem; align-items: center; justify-content: space-around;">
+                <div style="text-align: center; padding: 1rem; background: #e0e7ff; border-radius: var(--radius-md); flex: 1;">
+                  <span class="badge badge-divisao-ag" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">AG - Avaliação Geral</span>
+                  <div id="count-divisao-ag" style="font-size: 2rem; font-weight: 800; color: #3730a3; margin-top: 0.5rem;">0</div>
+                  <small style="color: #4338ca;">Provas cadastradas</small>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: #fdf2f8; border-radius: var(--radius-md); flex: 1;">
+                  <span class="badge badge-divisao-ad" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">AD - Avaliação Diversificada</span>
+                  <div id="count-divisao-ad" style="font-size: 2rem; font-weight: 800; color: #9d174d; margin-top: 0.5rem;">0</div>
+                  <small style="color: #be185d;">Provas cadastradas</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trimestres -->
+          <div class="content-card" style="margin-bottom: 0;">
+            <div class="card-header">
+              <h3 class="card-title">Distribuição por Trimestre</h3>
+              <span style="font-size: 0.78rem; color: var(--text-muted);">Ciclos letivos</span>
+            </div>
+            <div class="card-body">
+              <div style="display: flex; gap: 0.75rem; justify-content: space-around;">
+                <div style="text-align: center; padding: 0.85rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); flex: 1;">
+                  <span style="font-weight: 700; color: var(--text-muted); font-size: 0.8rem;">1º TRIMESTRE</span>
+                  <div id="count-trimestre-1" style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-top: 0.35rem;">0</div>
+                </div>
+                <div style="text-align: center; padding: 0.85rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); flex: 1;">
+                  <span style="font-weight: 700; color: var(--text-muted); font-size: 0.8rem;">2º TRIMESTRE</span>
+                  <div id="count-trimestre-2" style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-top: 0.35rem;">0</div>
+                </div>
+                <div style="text-align: center; padding: 0.85rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); flex: 1;">
+                  <span style="font-weight: 700; color: var(--text-muted); font-size: 0.8rem;">3º TRIMESTRE</span>
+                  <div id="count-trimestre-3" style="font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-top: 0.35rem;">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela de Provas Recentes (Requisito 9) -->
+        <div class="content-card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Provas Recentes no Fluxo
+            </h3>
+            <a href="provas.html" class="btn btn-outline btn-sm">Ver Todas as Provas &rarr;</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Código</th>
+                  <th>Avaliação</th>
+                  <th>Professor</th>
+                  <th>Turma</th>
+                  <th>Trim. / Divisão</th>
+                  <th>Prazo de Entrega</th>
+                  <th>Status Atual</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-provas-recentes">
+                <tr>
+                  <td colspan="8" class="loading-container">
+                    <span class="spinner"></span>
+                    <span>Carregando dados em tempo real...</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
